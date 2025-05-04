@@ -100,7 +100,7 @@ class FirebaseApi {
               status: false, error: 'Something went wrong while signing in');
       }
     }
-    return await getCurrentUserProfile();
+    return await getCurrentUser();
   }
 
   Future<CustomResponse> signOut() async {
@@ -112,7 +112,7 @@ class FirebaseApi {
     }
   }
 
-  Future<CustomResponse> getCurrentUserProfile() async {
+  Future<CustomResponse> getCurrentUser() async {
     if (await isLoggedIn()) {
       DocumentSnapshot userDoc =
           await userCollection.doc(firebaseAuthInstance.currentUser!.uid).get();

@@ -32,7 +32,7 @@ class UserRepository extends UserInterface<UserModel> {
 
   @override
   Future<DataState> getCurrentUser() async {
-    CustomResponse response = await fbApi.getCurrentUserProfile();
+    CustomResponse response = await fbApi.getCurrentUser();
     if (response.status == true) {
       return DataSuccess(response.data);
     } else {

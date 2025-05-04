@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+//arayüzde kullanılacak durum için class
 abstract class DataState<T> extends Equatable {
   final T? data;
   final String? error;

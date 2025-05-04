@@ -1,39 +1,32 @@
-import 'package:ai_coach/production/data/data_sources/fb_api.dart';
-import 'package:ai_coach/production/data/models/user_model.dart';
+import 'package:ai_coach/production/presentation/bloc/user_bloc/user_bloc_bloc.dart';
+import 'package:ai_coach/production/presentation/pages/auth_page/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MainApp());
+  runApp(const MainApp());
 }
 
-class MainApp extends StatefulWidget {
-  MainApp({super.key});
-  //FirebaseApi api = FirebaseApi();
-  @override
-  State<MainApp> createState() => _MainAppState();
-}
-
-class _MainAppState extends State<MainApp> {
-  /* @override
-  void initState() {
-    print("istek yollanıyor");
-    widget.api.searchUsername(username: "dummy2");
-    print("istek bitti");
-    super.initState();
-  }*/
-
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<UserBlocBloc>(create: (context) => UserBlocBloc()),
+        ],
+        child: MaterialApp(
+          initialRoute: "/auth",
+          routes: {"/auth": (context) => const AuthPage()},
+          debugShowCheckedModeBanner: false,
+          title: 'AI MENTOR',
+          theme: ThemeData(
+            useMaterial3: true,
+          ),
+        ));
   }
 }
