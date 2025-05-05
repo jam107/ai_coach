@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
           initialRoute: "/auth",
           routes: {
             "/auth": (context) => const AuthPage(),
-            "/main": (context) => const MainPage(),
+            "/main": (context) => MainPage(),
           },
           debugShowCheckedModeBanner: false,
           title: 'AI MENTOR',

@@ -20,6 +20,11 @@ class CustomTextStyles {
       decoration: TextDecoration.none,
       decorationThickness: 0,
       letterSpacing: 0.75);
+  static final mainTextStyle = GoogleFonts.montserratAlternates(
+    color: MainColors.primaryTextColor1,
+    fontSize: 48,
+    fontWeight: FontWeight.w700,
+  );
   static final primaryStyle2 = GoogleFonts.montserratAlternates(
       color: MainColors.primaryTextColor1,
       fontSize: 16,

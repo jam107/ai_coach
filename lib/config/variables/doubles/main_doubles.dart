@@ -13,6 +13,8 @@ class IconSizes {
   static double authElipseLeft2Height = 750.0;
   static double authElipseLeft3Width = 440.0;
   static double authElipseLeft3Height = 460.0;
+  static double mainIconWidth = 150.0;
+  static double mainIconHeight = 150.0;
 }
 
 class MarginSizes {

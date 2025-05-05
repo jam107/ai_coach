@@ -39,9 +39,8 @@ class _AuthPageState extends State<AuthPage> {
             //Checking first if user already authenticated. If so navigate.
             case IsAuthenticatedLoading():
               showDialog(
-                context: context,
-                builder: (context) {
-                  dialogContext = context;
+                context: dialogContext,
+                builder: (dialogContext) {
                   return const LoadingDialog();
                 },
               );
@@ -50,7 +49,7 @@ class _AuthPageState extends State<AuthPage> {
               if (dialogContext.mounted) {
                 Navigator.of(dialogContext).pop();
               }
-              Navigator.of(context).pushReplacementNamed("/main");
+              Navigator.of(context).pushNamed("/main");
               break;
             case IsAuthenticatedError():
               if (dialogContext.mounted) {
@@ -59,9 +58,8 @@ class _AuthPageState extends State<AuthPage> {
             //User Login-Register Request
             case UserBlocLoading():
               showDialog(
-                context: context,
-                builder: (context) {
-                  dialogContext = context;
+                context: dialogContext,
+                builder: (dialogContext) {
                   return const LoadingDialog();
                 },
               );
@@ -70,7 +68,7 @@ class _AuthPageState extends State<AuthPage> {
               if (dialogContext.mounted) {
                 Navigator.of(dialogContext).pop();
               }
-              Navigator.of(context).pushReplacementNamed("/main");
+              Navigator.of(context).pushNamed("/main");
               break;
             case UserBlocError():
               if (dialogContext.mounted) {
@@ -123,8 +121,8 @@ class _AuthPageState extends State<AuthPage> {
                               final offsetAnimation = animation.drive(
                                 Tween<Offset>(
                                   begin: isLogin
-                                      ? const Offset(4.0, 0.0)
-                                      : const Offset(-4.0, 0.0),
+                                      ? const Offset(-4.0, 0.0)
+                                      : const Offset(4.0, 0.0),
                                   end: Offset.zero,
                                 ).chain(CurveTween(curve: Curves.easeInOut)),
                               );
