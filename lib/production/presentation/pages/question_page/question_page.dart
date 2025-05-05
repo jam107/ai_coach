@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ai_coach/config/materials/colors/main_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionPage extends StatefulWidget {
   const QuestionPage({super.key});
@@ -11,11 +13,15 @@ class _QuestionPageState extends State<QuestionPage> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
   final List<String> _questions = [
-    'What is your name?',
-    'How old are you?',
-    'What is your favorite color?',
+    'Bir konuyu tam olarak anlayabilmen için ortalama kaç kez tekrar etmen gerekiyor?',
+    'Günde toplam kaç saat verimli çalışabiliyorsun?',
+    'Ortalama bir etüt süren kaç dakika?',
+    'Müsait olduğun günler nelerdir?',
+    'Sınav tarihlerin nelerdir?',
+    'Çalışman gereken konular nelerdir?'
   ];
   final List<String?> _answers = [];
+
   @override
   void initState() {
     super.initState();
@@ -40,7 +46,6 @@ class _QuestionPageState extends State<QuestionPage> {
 
   void _complete() {
     print("Answers submitted: $_answers");
-    // Navigate to summary page or show dialog
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
@@ -59,11 +64,27 @@ class _QuestionPageState extends State<QuestionPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(_questions[index], style: TextStyle(fontSize: 20)),
+          Text(
+            _questions[index],
+            style: GoogleFonts.montserratAlternates(
+              fontSize: 20,
+              color: MainColors.primaryTextColor1,
+            ),
+            textAlign: TextAlign.center,
+          ),
           SizedBox(height: 20),
           TextField(
             onChanged: (value) => _answers[index] = value,
-            decoration: InputDecoration(labelText: 'Your answer'),
+            style: GoogleFonts.montserratAlternates(
+              color: MainColors.primaryTextColor1,
+            ),
+            decoration: InputDecoration(
+              labelText: 'Your answer',
+              labelStyle: GoogleFonts.montserratAlternates(
+                color: MainColors.secondaryTextColor,
+              ),
+              border: OutlineInputBorder(),
+            ),
           ),
         ],
       ),
@@ -75,44 +96,72 @@ class _QuestionPageState extends State<QuestionPage> {
     final isLast = _currentIndex == _questions.length - 1;
 
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: PageView.builder(
-              controller: _pageController,
-              physics:
-                  NeverScrollableScrollPhysics(), // control only via buttons
-              itemCount: _questions.length,
-              itemBuilder: (context, index) => _buildQuestion(index),
+      backgroundColor: MainColors.backgroundColor1,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: PageView.builder(
+                controller: _pageController,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: _questions.length,
+                itemBuilder: (context, index) => _buildQuestion(index),
+              ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              if (_currentIndex > 0)
-                ElevatedButton(
-                    onPressed: _prevPage,
-                    child: Text(
-                      "Previous",
-                      style: TextStyle(color: Colors.black),
-                    )),
-              isLast
-                  ? ElevatedButton(
-                      onPressed: _complete,
+            SizedBox(height: 20),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.8,
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (_currentIndex > 0)
+                    ElevatedButton(
+                      onPressed: _prevPage,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: MainColors.backgroundColor2,
+                      ),
                       child: Text(
-                        "Complete",
-                        style: TextStyle(color: Colors.black),
-                      ))
-                  : ElevatedButton(
-                      onPressed: _nextPage,
-                      child: Text(
-                        "Next",
-                        style: TextStyle(color: Colors.black),
-                      )),
-            ],
-          ),
-          SizedBox(height: 20),
-        ],
+                        "Previous",
+                        style: GoogleFonts.montserratAlternates(
+                          color: MainColors.primaryTextColor,
+                        ),
+                      ),
+                    ),
+                  SizedBox(width: 20),
+                  isLast
+                      ? ElevatedButton(
+                          onPressed: _complete,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: MainColors.backgroundColor2,
+                          ),
+                          child: Text(
+                            "Complete",
+                            style: GoogleFonts.montserratAlternates(
+                              color: MainColors.primaryTextColor,
+                            ),
+                          ),
+                        )
+                      : ElevatedButton(
+                          onPressed: _nextPage,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: MainColors.backgroundColor2,
+                          ),
+                          child: Text(
+                            "Next",
+                            style: GoogleFonts.montserratAlternates(
+                              color: MainColors.primaryTextColor,
+                            ),
+                          ),
+                        ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
