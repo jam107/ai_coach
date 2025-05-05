@@ -98,11 +98,13 @@ class _MainPageState extends State<MainPage> {
                           fixedSize:
                               WidgetStateProperty.all(const Size(420, 260))),
                       child: Text(
-                        "PROGRAMI OLUŞTUR",
+                        "BİLGİLERİNİZİ DOLDURUN",
                         style: CustomTextStyles.mainTextStyle,
                         textAlign: TextAlign.center,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/question");
+                      },
                     ),
                     const SizedBox(height: 50),
                     Row(
