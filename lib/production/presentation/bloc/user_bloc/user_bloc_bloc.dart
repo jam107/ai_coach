@@ -5,6 +5,7 @@ import 'package:ai_coach/production/domain/use_cases/create_user.dart';
 import 'package:ai_coach/production/domain/use_cases/get_current_user.dart';
 import 'package:ai_coach/production/domain/use_cases/login_request.dart';
 import 'package:ai_coach/production/domain/use_cases/logout_request.dart';
+import 'package:ai_coach/production/domain/use_cases/update_user.dart';
 import 'package:bloc/bloc.dart';
 
 part 'user_bloc_event.dart';
@@ -17,12 +18,14 @@ class UserBlocBloc extends Bloc<UserBlocEvent, UserBlocState> {
   late LoginRequestUseCase _loginRequestUseCase;
   late LogoutRequestUseCase _logoutRequestUseCase;
   late GetCurrentUserUseCase _getCurrentUserUseCase;
+  late UpdateUserUseCase _updateUserUseCase;
 
   UserBlocBloc() : super(const UserBlocInitial()) {
     _createUserUseCase = CreteUserUseCase(_userRepository);
     _loginRequestUseCase = LoginRequestUseCase(_userRepository);
     _logoutRequestUseCase = LogoutRequestUseCase(_userRepository);
     _getCurrentUserUseCase = GetCurrentUserUseCase(_userRepository);
+    _updateUserUseCase = UpdateUserUseCase(_userRepository);
 
     on<CreateUser>(onCreateUser);
     on<LoginRequest>(onLoginRequest);

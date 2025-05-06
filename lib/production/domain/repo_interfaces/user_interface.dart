@@ -6,4 +6,5 @@ abstract class UserInterface<T extends UserEntity> {
   Future<DataState> loginRequest({required T user, required String password});
   Future<DataState> logoutRequest();
   Future<DataState> getCurrentUser();
+  Future<DataState> updateUser({required T updatedUser});
 }

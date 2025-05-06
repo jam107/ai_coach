@@ -121,11 +121,13 @@ class _MainPageState extends State<MainPage> {
                               fixedSize: WidgetStateProperty.all(
                                   const Size(420, 260))),
                           child: Text(
-                            "PROGRAMI DÜZENLE",
+                            "AI İLE PROGRAMI OlUŞTUR",
                             style: CustomTextStyles.mainTextStyle,
                             textAlign: TextAlign.center,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed("/ai");
+                          },
                         ),
                         const SizedBox(width: 100),
                         TextButton(
@@ -139,7 +141,7 @@ class _MainPageState extends State<MainPage> {
                               fixedSize: WidgetStateProperty.all(
                                   const Size(420, 260))),
                           child: Text(
-                            "PROGRAMI AI İLE GÖR",
+                            "PROGRAMI  İLE GÖR",
                             style: CustomTextStyles.mainTextStyle,
                             textAlign: TextAlign.center,
                           ),

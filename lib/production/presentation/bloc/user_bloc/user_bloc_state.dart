@@ -3,9 +3,8 @@ part of 'user_bloc_bloc.dart';
 abstract class UserBlocState {
   final dynamic data;
   final String? error;
-  final dynamic image;
 
-  const UserBlocState({this.data, this.error, this.image});
+  const UserBlocState({this.data, this.error});
 }
 
 class UserBlocInitial extends UserBlocState {
@@ -41,4 +40,17 @@ class UserBlocError extends UserBlocState {
 //Logout State
 class UserBlocLogout extends UserBlocState {
   const UserBlocLogout({required super.data});
+}
+
+//Updating User İnformation
+class UserUpdateLoading extends UserBlocState {
+  const UserUpdateLoading();
+}
+
+class UserUpdateDone extends UserBlocState {
+  const UserUpdateDone({required super.data});
+}
+
+class UserUpdateError extends UserBlocState {
+  const UserUpdateError({required super.error});
 }

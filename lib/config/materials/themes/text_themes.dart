@@ -47,4 +47,41 @@ class CustomTextStyles {
     fontSize: 24,
     fontWeight: FontWeight.w600,
   );
+  static final aiPageHeaderStyle = GoogleFonts.inter(
+    color: MainColors.primaryTextColor1,
+    fontSize: 40,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.5,
+    shadows: [
+      Shadow(
+        offset: Offset(0, 10), // x: 0, y: 9
+        blurRadius: 4, // blur: 4
+        color: Colors.black.withOpacity(0.25), // %25 opaklık
+      ),
+    ],
+  );
+  static final aiPageSubHeaderStyle = GoogleFonts.inter(
+    color: MainColors.primaryTextColor1,
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.5,
+  );
+  static final aiPageSubHeaderStyle2 = GoogleFonts.inter(
+    color: MainColors.primaryTextColor1,
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.5,
+  );
+  static final aiPageSubHeaderStyle3 = GoogleFonts.inter(
+    color: MainColors.primaryTextColor,
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.5,
+  );
+  static final aiPageSubHeaderStyle4 = GoogleFonts.inter(
+    color: MainColors.primaryTextColor,
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.5,
+  );
 }

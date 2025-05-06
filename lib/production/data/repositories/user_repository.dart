@@ -49,4 +49,14 @@ class UserRepository extends UserInterface<UserModel> {
       return DataFailed(response.error!);
     }
   }
+
+  @override
+  Future<DataState> updateUser({required UserModel updatedUser}) async {
+    CustomResponse response = await fbApi.updateUser(updatedUser: updatedUser);
+    if (response.status == true) {
+      return DataSuccess(response.data);
+    } else {
+      return DataFailed(response.error!);
+    }
+  }
 }

@@ -20,3 +20,9 @@ class AuthStrings {
   static const String loginButtonText = "GİRİŞ";
   static const String registerButtonText = "ÜYE OL";
 }
+
+class MainStrings {
+  static const String image1 = "assets/images/ai_page1.png";
+  static const String image2 = "assets/images/ai_page2.png";
+  static const String image3 = "assets/images/ai_page3.png";
+}

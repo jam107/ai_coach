@@ -4,24 +4,27 @@ class UserModel extends UserEntity {
   const UserModel({
     super.mail,
     super.username,
-    super.studyDuration,
-    super.hourPerDay,
-    super.busyHours,
+    super.tasks,
+    super.weeklyAvailability,
+    super.studySession,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        mail: json["mail"],
-        username: json["username"],
-        studyDuration: json["studyDuration"],
-        hourPerDay: json["hourPerDay"],
-        busyHours: List<Map<String, int>>.from(json["busyHours"]),
+        mail: json['mail'] as String,
+        username: json['username'] as String,
+        tasks: (json['tasks'] as List<dynamic>)
+            .map((e) => Map<String, String>.from(e as Map))
+            .toList(),
+        weeklyAvailability:
+            Map<String, String>.from(json['weeklyAvailability']),
+        studySession: Map<String, int>.from(json['studySession']),
       );
 
   Map<String, dynamic> toJson() => {
         'mail': mail,
         'username': username,
-        'studyDuration': studyDuration,
-        'hourPerDay': hourPerDay,
-        'busyHours': busyHours,
+        'tasks': tasks,
+        'weeklyAvailability': weeklyAvailability,
+        'studySession': studySession,
       };
 }

@@ -21,3 +21,7 @@ class LogoutRequest extends UserBlocEvent {
 class GetCurrentUserRequest extends UserBlocEvent {
   const GetCurrentUserRequest();
 }
+
+class UpdateUserRequest extends UserBlocEvent {
+  const UpdateUserRequest({required super.user});
+}

@@ -3,6 +3,7 @@ import 'package:ai_coach/production/data/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_vertexai/firebase_vertexai.dart';
 
 class FirebaseApi {
   //initialize necessary modules
@@ -130,6 +131,29 @@ class FirebaseApi {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<CustomResponse> updateUser({required UserModel updatedUser}) async {
+    CustomResponse response = await getCurrentUser();
+    if (response.status) {
+      try {
+        UserModel mixedUser = UserModel(
+            mail: response.data.mail,
+            username: response.data.username,
+            studySession: updatedUser.studySession,
+            tasks: updatedUser.tasks,
+            weeklyAvailability: updatedUser.weeklyAvailability);
+        await userCollection
+            .doc(firebaseAuthInstance.currentUser!.uid)
+            .set(mixedUser.toJson());
+        return CustomResponse(
+            status: true, data: "Bilgiler Başarıyla Kaydedildi");
+      } catch (e) {
+        return CustomResponse(status: false, error: "Bilgiler Kaydedilemedi");
+      }
+    } else {
+      return CustomResponse(status: false, error: "Giriş Yapılmamış.");
     }
   }
 }

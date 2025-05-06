@@ -1,4 +1,5 @@
 import 'package:ai_coach/production/presentation/bloc/user_bloc/user_bloc_bloc.dart';
+import 'package:ai_coach/production/presentation/pages/ai_page/ai_page.dart';
 import 'package:ai_coach/production/presentation/pages/auth_page/auth_page.dart';
 import 'package:ai_coach/production/presentation/pages/main/main_page.dart';
 import 'package:ai_coach/production/presentation/pages/question_page/question_page.dart';
@@ -29,6 +30,7 @@ class MainApp extends StatelessWidget {
             "/auth": (context) => const AuthPage(),
             "/main": (context) => const MainPage(),
             "/question": (context) => const QuestionPage(),
+            "/ai": (context) => const AiPage(),
           },
           debugShowCheckedModeBanner: false,
           title: 'AI MENTOR',

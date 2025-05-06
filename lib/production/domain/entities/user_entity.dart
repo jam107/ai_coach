@@ -3,16 +3,16 @@ import 'package:equatable/equatable.dart';
 class UserEntity extends Equatable {
   final String mail;
   final String username;
-  final int studyDuration;
-  final int hourPerDay;
-  final List<Map<String, int>> busyHours;
+  final List<Map<String, String>> tasks;
+  final Map<String, String> weeklyAvailability;
+  final Map<String, int> studySession;
 
   const UserEntity({
     this.mail = "",
     this.username = "",
-    this.studyDuration = 0,
-    this.hourPerDay = 0,
-    this.busyHours = const <Map<String, int>>[],
+    this.tasks = const [],
+    this.weeklyAvailability = const {},
+    this.studySession = const {},
   });
 
   @override

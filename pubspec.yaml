@@ -20,6 +20,7 @@ dependencies:
   google_fonts: ^6.2.1
   email_validator: ^3.0.0
   font_awesome_flutter: ^10.8.0
+  firebase_vertexai: ^1.6.0
 
 dev_dependencies:
   flutter_test:
