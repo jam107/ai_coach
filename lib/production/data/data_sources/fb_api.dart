@@ -147,8 +147,7 @@ class FirebaseApi {
         await userCollection
             .doc(firebaseAuthInstance.currentUser!.uid)
             .set(mixedUser.toJson());
-        return CustomResponse(
-            status: true, data: "Bilgiler Başarıyla Kaydedildi");
+        return CustomResponse(status: true, data: mixedUser);
       } catch (e) {
         return CustomResponse(status: false, error: "Bilgiler Kaydedilemedi");
       }

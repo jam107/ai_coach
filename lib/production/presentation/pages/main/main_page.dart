@@ -43,8 +43,7 @@ class _MainPageState extends State<MainPage> {
         },
         buildWhen: (previous, current) {
           if (previous is IsAuthenticatedDone &&
-                  current is IsAuthenticatedLoading ||
-              current is IsAuthenticatedDone) {
+              current is IsAuthenticatedLoading) {
             return false;
           } else {
             return true;
@@ -87,66 +86,125 @@ class _MainPageState extends State<MainPage> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(
-                      style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all(
-                              MainColors.backgroundColor2),
-                          shape: WidgetStateProperty.all(
-                              const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)))),
-                          fixedSize:
-                              WidgetStateProperty.all(const Size(420, 260))),
-                      child: Text(
-                        "BİLGİLERİNİZİ DOLDURUN",
-                        style: CustomTextStyles.mainTextStyle,
-                        textAlign: TextAlign.center,
+                    state is IsAuthenticatedDone
+                        ? Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 10),
+                            decoration: BoxDecoration(
+                              color: MainColors.backgroundColor2,
+                              borderRadius: BorderRadius.circular(30),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.25),
+                                  offset: Offset(0, 9),
+                                  blurRadius: 4,
+                                  spreadRadius: 0,
+                                ),
+                              ],
+                              border: Border.all(
+                                color: Colors.grey.withOpacity(0.2),
+                                width: 1,
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: MainColors.backgroundColor3
+                                        .withOpacity(0.3),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    FontAwesomeIcons.user,
+                                    size: 16,
+                                    color: MainColors.primaryTextColor,
+                                  ),
+                                ),
+                                SizedBox(width: 12),
+                                Text(
+                                  BlocProvider.of<UserBlocBloc>(context)
+                                      .state
+                                      .data
+                                      .username,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: MainColors.primaryTextColor1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Text(""),
+                    SizedBox(height: 50),
+                    Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.25),
+                            offset: Offset(0, 9),
+                            blurRadius: 4,
+                            spreadRadius: 0,
+                          ),
+                        ],
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("/question");
-                      },
+                      child: TextButton(
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all(
+                                MainColors.backgroundColor2),
+                            shape: WidgetStateProperty.all(
+                                const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5)))),
+                            fixedSize:
+                                WidgetStateProperty.all(const Size(420, 260))),
+                        child: Text(
+                          "BİLGİLERİNİZİ DOLDURUN",
+                          style: CustomTextStyles.mainTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("/question");
+                        },
+                      ),
                     ),
                     const SizedBox(height: 50),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all(
-                                  MainColors.backgroundColor2),
-                              shape: WidgetStateProperty.all(
-                                  const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5)))),
-                              fixedSize: WidgetStateProperty.all(
-                                  const Size(420, 260))),
-                          child: Text(
-                            "AI İLE PROGRAMI OlUŞTUR",
-                            style: CustomTextStyles.mainTextStyle,
-                            textAlign: TextAlign.center,
+                        Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.25),
+                                offset: Offset(0, 9),
+                                blurRadius: 4,
+                                spreadRadius: 0,
+                              ),
+                            ],
                           ),
-                          onPressed: () {
-                            Navigator.of(context).pushNamed("/ai");
-                          },
+                          child: TextButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStateProperty.all(
+                                    MainColors.backgroundColor2),
+                                shape: WidgetStateProperty.all(
+                                    const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)))),
+                                fixedSize: WidgetStateProperty.all(
+                                    const Size(420, 260))),
+                            child: Text(
+                              "AI İLE PROGRAMI OlUŞTUR",
+                              style: CustomTextStyles.mainTextStyle,
+                              textAlign: TextAlign.center,
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pushNamed("/ai");
+                            },
+                          ),
                         ),
-                        const SizedBox(width: 100),
-                        TextButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all(
-                                  MainColors.backgroundColor2),
-                              shape: WidgetStateProperty.all(
-                                  const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5)))),
-                              fixedSize: WidgetStateProperty.all(
-                                  const Size(420, 260))),
-                          child: Text(
-                            "PROGRAMI  İLE GÖR",
-                            style: CustomTextStyles.mainTextStyle,
-                            textAlign: TextAlign.center,
-                          ),
-                          onPressed: () {},
-                        )
                       ],
                     )
                   ],

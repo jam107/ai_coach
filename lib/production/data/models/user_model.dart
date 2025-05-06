@@ -27,4 +27,9 @@ class UserModel extends UserEntity {
         'weeklyAvailability': weeklyAvailability,
         'studySession': studySession,
       };
+  Map<String, dynamic> toAiPropmt() => {
+        'tasks': tasks,
+        'weeklyAvailability': weeklyAvailability,
+        'studySession': studySession,
+      };
 }

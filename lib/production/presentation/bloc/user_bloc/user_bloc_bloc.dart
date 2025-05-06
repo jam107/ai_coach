@@ -31,6 +31,7 @@ class UserBlocBloc extends Bloc<UserBlocEvent, UserBlocState> {
     on<LoginRequest>(onLoginRequest);
     on<LogoutRequest>(onLogoutRequest);
     on<GetCurrentUserRequest>(onGetCurrentUserRequest);
+    on<UpdateUserRequest>(onUpdateUserRequest);
   }
 
   void onGetCurrentUserRequest(
@@ -73,6 +74,18 @@ class UserBlocBloc extends Bloc<UserBlocEvent, UserBlocState> {
       emit(UserBlocLogout(data: dataState.data!));
     } else {
       emit(UserBlocError(error: dataState.error));
+    }
+  }
+
+  void onUpdateUserRequest(
+      UpdateUserRequest event, Emitter<UserBlocState> emit) async {
+    emit(const UserUpdateLoading());
+    final DataState dataState =
+        await _updateUserUseCase.call(param: event.user!);
+    if (dataState is DataSuccess && dataState.data != null) {
+      emit(UserUpdateDone(data: dataState.data!));
+    } else {
+      emit(UserUpdateError(error: dataState.error));
     }
   }
 }
